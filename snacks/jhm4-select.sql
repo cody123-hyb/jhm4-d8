@@ -1,1 +1,1 @@
-CREATE 
+SELECT name, gender FROM Student;
