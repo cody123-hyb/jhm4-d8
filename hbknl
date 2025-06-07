@@ -1,0 +1,35 @@
+基於你提供的snacks數據表，我可以為你構建一個**ER圖（實體關係圖）**來展示其結構和關係。以下是ER圖的概念模型：
+erDiagram
+    SNACKS {
+        int ID PK
+        varchar Category
+        varchar Brand
+        int SalesCount
+        boolean HealthyOption
+    }
+    SNACKS ||--o{ SALES : contains
+    SALES {
+        int ID PK
+        int SnackID FK
+        int Quantity
+        date SaleDate
+    }
+    SALES ||--o{ CUSTOMERS : made_by
+    CUSTOMERS {
+        int ID PK
+        varchar Name
+        varchar Email
+    }
+    CUSTOMERS ||--o{ REVIEWS : writes
+    REVIEWS {
+        int ID PK
+        int CustomerID FK
+        int SnackID FK
+        int Rating
+        text Comment
+    }
+    SNACKS ||--o{ REVIEWS : has
+    REVIEWS ||--o{ SALES : includes
+    SALES ||--o{ SNACKS : sold_in
+    }
+    
