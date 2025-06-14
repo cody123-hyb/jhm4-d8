@@ -8,9 +8,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci */;
 
 --
--- Database: `APT2004`
+-- Database: `snacks`
 --
-CREATE DATABASE IF NOT EXISTS `APT2004` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `snacks` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `snacks`;
 
 -- --------------------------------------------------------
