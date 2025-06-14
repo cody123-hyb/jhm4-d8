@@ -1,15 +1,41 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci */;
+
+--
+-- Database: `APT2004`
+--
+CREATE DATABASE IF NOT EXISTS `APT2004` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `APT2004`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `snacks`
+--
+DROP TABLE IF EXISTS `snacks`;
 CREATE TABLE `snacks` (
-  `ID` int(11) NOT NULL,
-  `Category` varchar(100) DEFAULT NULL,
-  `Brand` varchar(100) DEFAULT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Category` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Brand` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SalesCount` int(11) DEFAULT NULL,
-  `HealthyOption` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `HealthyOption` tinyint(1) DEFAULT 0 COMMENT '1 for healthy, 0 for not healthy',
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UpdatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ID`),
+  KEY `idx_category` (`Category`),
+  KEY `idx_brand` (`Brand`),
+  KEY `idx_healthy` (`HealthyOption`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `snacks`
 --
-
 INSERT INTO `snacks` (`ID`, `Category`, `Brand`, `SalesCount`, `HealthyOption`) VALUES
 (1, 'Chips', 'Lays', 50, 0),
 (2, 'Chips', 'Calbee', 42, 0),
@@ -45,18 +71,10 @@ INSERT INTO `snacks` (`ID`, `Category`, `Brand`, `SalesCount`, `HealthyOption`) 
 (32, 'Energy Bars', 'Quest Bar', 18, 1);
 
 --
--- Indexes for dumped tables
+-- Fix any auto-increment values
 --
+ALTER TABLE `snacks` AUTO_INCREMENT=33;
 
-ALTER TABLE `snacks`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT for table `snacks`
---
-
-ALTER TABLE `snacks`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
